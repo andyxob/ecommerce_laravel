@@ -8,13 +8,10 @@
             <div style="display: inline">
                 <form action="{{route('basket_add' , $product->id)}}" method="post">
                     @csrf
-                    <button type="submit" class="btn btn-primary">Basket</button>
+                    <button type="submit" class="btn btn-primary">To basket</button>
                 </form>
+                    <a href="{{route('product', $product)}}" class="btn btn-default" role="button">Read more</a>
 
-                <form action="{{route('product' , [$product->category->code, $product->code])}}" method="get">
-                    @csrf
-                    <button class="btn btn-default" role="button">Read more</button>
-                </form>
             </div>
         </div>
     </div>

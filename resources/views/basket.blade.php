@@ -17,7 +17,6 @@
         @foreach($order->products as $product)
             <tr>
                 <td>
-
                     <a href="{{route('product', [$product->category->code , $product->code])}}">
                         {{$product->name}}
                         {{$product->image}}
@@ -33,7 +32,7 @@
 
                         <form action="{{route('basket_add', $product)}}" method="post">
                             @csrf
-                            <button type="submit " class="btn btn-success" aria-hidden="true"><span
+                            <button type="submit" class="btn btn-success" aria-hidden="true"><span
                                     class="glyphicon glyphicon-plus">+</span></button>
                         </form>
                     </div>

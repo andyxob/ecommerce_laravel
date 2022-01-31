@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    //
-
 public function index(){
     $products = Product::get();
     return view('index', ['products'=>$products]);
@@ -25,10 +23,8 @@ public function category($code){
     return view('category', ['category'=>$category]);
 }
 
-
 public function product($product){
     return view('product', ['product'=>$product]);
 }
-
 
 }
