@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use HasFactory;
-
     public function products(){
         return $this->belongsToMany(Product::class)->withPivot('count')->withTimestamps();
 
@@ -20,5 +18,13 @@ class Order extends Model
            $sum+=$product->getPriceForCount();
        }
        return $sum;
+    }
+
+    public function saveOrder($name, $phone){
+        $this->name = $name;
+        $this->phone = $phone;
+        $this->status = 1;
+        $this->save();
+        session()->forget('orderId');
     }
 }

@@ -1,4 +1,4 @@
-@extends('base')
+@extends('layouts.base')
 
 @section('title')
     index
@@ -11,7 +11,7 @@
     <h2>All products</h2>
 <div class="row">
     @foreach($products as $product)
-    @include('card' ,['product'=>$product])
+    @include('layouts.card' ,['product'=>$product])
     @endforeach
 </div>
 @endsection

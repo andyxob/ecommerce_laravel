@@ -1,4 +1,4 @@
-@extends('base')
+@extends('layouts.base')
 
 @section('title')
 
@@ -14,7 +14,7 @@
 
     <div class="row">
     @foreach($category->products as $product)
-        @include('card' ,['product'=>$product])
+        @include('layouts.card' ,['product'=>$product])
     @endforeach
     </div>
 

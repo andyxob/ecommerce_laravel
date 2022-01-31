@@ -13,9 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Auth::routes([
+    'reset'=>false,
+    'confirm'=>false,
+    'verify'=>false,
+]);
+
+
 Route::get('/', [\App\Http\Controllers\MainController::class , 'index'])->name("home");
 
+Route::post('/basket/add/{id}' , [\App\Http\Controllers\BasketController::class , 'basketAdd'])->name('basket_add');
+
+Route::post('/basket/remove/{id}' , [\App\Http\Controllers\BasketController::class , 'basketRemove'])->name('basket_remove');
+
+
 Route::get('/categories', [\App\Http\Controllers\MainController::class, 'categories'])->name('categories');
+
+Route::get('/basket/order', [\App\Http\Controllers\BasketController::class, 'order'])->name('order');
+
+Route::post('/basket/order/confirm' , [\App\Http\Controllers\BasketController::class, 'orderConfirm'])->name('order_confirm');
+
+
+
 
 Route::get('/basket', [\App\Http\Controllers\BasketController::class, 'basket'])->name('basket');
 
@@ -24,17 +44,5 @@ Route::get('/categories/{category?}', [\App\Http\Controllers\MainController::cla
 Route::get('{category}/{product?}', [\App\Http\Controllers\MainController::class , 'product'])->name('product');
 
 
-Route::get('/basket/order', [\App\Http\Controllers\BasketController::class, 'order'])->name('order');
-
-Route::post('/basket/add/{id}' , [\App\Http\Controllers\BasketController::class , 'basketAdd'])->name('basket_add');
-
-Route::post('/basket/remove/{id}' , [\App\Http\Controllers\BasketController::class , 'basketRemove'])->name('basket_remove');
 
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

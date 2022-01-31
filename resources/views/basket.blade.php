@@ -1,4 +1,4 @@
-@extends('base')
+@extends('layouts.base')
 
 @section('title', 'Basket')
 
@@ -40,12 +40,14 @@
                 </td>
                 <td>{{$product->price}}</td>
                 <td>{{$product->getPriceForCount()}}</td>
-                <td><span class="badge">1</span>
-                </td>
             </tr>
         @endforeach
     </table>
 
     <h1>Total price: {{$order->getFullPrice()}}</h1>
+
+    <div class="btn-group pull-right" role="group">
+        <a href="{{route('order')}}">Create order</a>
+    </div>
 
 @endsection

@@ -18,13 +18,38 @@ class BasketController extends Controller
     }
 
     public function order(){
-        return view('order');
+        $orderId = session('orderId');
+        if(is_null($orderId))
+        {
+            return redirect()->route('home');
+        }
+        $order = Order::find($orderId);
+        return view('order', ['order'=>$order]);
+    }
+
+    public function orderConfirm(Request $request){
+
+        $orderId = session('orderId');
+        if(is_null($orderId)){
+            return redirect()->route('home');
+        }
+        $order = Order::find($orderId);
+
+        $success = $order->saveOrder($request->name, $request->phone);
+        if($success){
+            session()->flash('success', 'Your order is in process');
+        }
+        else{
+            session()->flash('warning', "Something went wrong, please try later");
+        }
+        return redirect()->route('home');
     }
 
     public function basketAdd($product_id){
         $orderId = session('orderId');
         if(is_null($orderId)){
             $order = Order::create()->id;
+            dd($order->id);
             session(['orderId'=>$order->id]);
         }
         else{

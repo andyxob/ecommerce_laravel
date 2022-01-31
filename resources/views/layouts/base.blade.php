@@ -18,13 +18,17 @@
     <ul class="nav nav-pills">
         <li class="nav-item"><a href="{{route("home")}}" class="nav-link active" aria-current="page">Home</a></li>
         <li class="nav-item"><a href="{{route("categories")}}" class="nav-link">Categories</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+        <li class="nav-item"><a href="{{route("basket")}}" class="nav-link">Basket</a></li>
         <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
         <li class="nav-item"><a href="#" class="nav-link">About</a></li>
     </ul>
 </header>
 
 <div class="container">
+    @if(session()->has('success'))
+        <p class="alert alert-success">{{session()->get('success')}}</p>
+    @endif
+
 @yield('content')
 
 
@@ -40,7 +44,7 @@
     <ul class="nav col-md-4 justify-content-end">
         <li class="nav-item"><a href="{{route("home")}}" class="nav-link px-2 text-muted">Home</a></li>
         <li class="nav-item"><a href="{{route("categories")}}" class="nav-link px-2 text-muted">Categories</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+        <li class="nav-item"><a href="{{route("basket")}}" class="nav-link px-2 text-muted">Basket</a></li>
         <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
         <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
     </ul>
