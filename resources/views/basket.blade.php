@@ -17,7 +17,7 @@
         @foreach($order->products as $product)
             <tr>
                 <td>
-                    <a href="{{route('product', [$product->category->code , $product->code])}}">
+                    <a href="{{route('product', [$product->category , $product->code])}}">
                         {{$product->name}}
                         {{$product->image}}
                     </a>

@@ -10,7 +10,7 @@
 </head>
 <body>
 <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+    <a href="{{route('home')}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
         <span class="fs-4">Laravel ecommerce</span>
     </a>
@@ -19,7 +19,13 @@
         <li class="nav-item"><a href="{{route("home")}}" class="nav-link active" aria-current="page">Home</a></li>
         <li class="nav-item"><a href="{{route("categories")}}" class="nav-link">Categories</a></li>
         <li class="nav-item"><a href="{{route("basket")}}" class="nav-link">Basket</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+        @guest
+        <li class="nav-item"><a href="{{route('login')}}" class="nav-link">Login</a></li>
+        @endguest
+
+        @auth
+            <li class="nav-item"><a href="{{route('logout')}}" class="nav-link">Logout</a></li>
+        @endauth
         <li class="nav-item"><a href="#" class="nav-link">About</a></li>
     </ul>
 </header>
@@ -29,6 +35,7 @@
         <p class="alert alert-success">{{session()->get('success')}}</p>
     @endif
 
+
 @yield('content')
 
 
@@ -37,16 +44,22 @@
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <p class="col-md-4 mb-0 text-muted">© 2022 Galiorka Inc.</p>
 
-    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+    <a href="{{route('home')}}" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
     </a>
 
     <ul class="nav col-md-4 justify-content-end">
-        <li class="nav-item"><a href="{{route("home")}}" class="nav-link px-2 text-muted">Home</a></li>
-        <li class="nav-item"><a href="{{route("categories")}}" class="nav-link px-2 text-muted">Categories</a></li>
-        <li class="nav-item"><a href="{{route("basket")}}" class="nav-link px-2 text-muted">Basket</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+        <li class="nav-item"><a href="{{route("home")}}" class="nav-link active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="{{route("categories")}}" class="nav-link">Categories</a></li>
+        <li class="nav-item"><a href="{{route("basket")}}" class="nav-link">Basket</a></li>
+        @guest
+            <li class="nav-item"><a href="{{route('login')}}" class="nav-link">Login</a></li>
+        @endguest
+
+        @auth
+            <li class="nav-item"><a href="{{route('logout')}}" class="nav-link">Logout</a></li>
+        @endauth
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
     </ul>
 </footer>
 </body>

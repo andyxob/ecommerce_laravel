@@ -17,7 +17,15 @@ Auth::routes([
     'reset'=>false,
     'confirm'=>false,
     'verify'=>false,
+
+
 ]);
+
+
+Route::group(['middleware'=>'auth'], function (){
+    Route::get('/home', [\App\Http\Controllers\HomeController::class , 'index'])->name('home_2');
+
+});
 
 Route::get('/', [\App\Http\Controllers\MainController::class , 'index'])->name("home");
 
@@ -25,7 +33,7 @@ Route::get('/basket', [\App\Http\Controllers\BasketController::class, 'basket'])
 
 Route::get('/categories', [\App\Http\Controllers\MainController::class, 'categories'])->name('categories');
 
-Route::get('/categories/{category?}', [\App\Http\Controllers\MainController::class, 'category'])->name('category');
+Route::get('/categories/{category}', [\App\Http\Controllers\MainController::class, 'category'])->name('category');
 
 Route::post('order/confirm' , [\App\Http\Controllers\BasketController::class, 'orderConfirm'])->name('order_confirm');
 
@@ -35,7 +43,4 @@ Route::post('/basket/add/{id}' , [\App\Http\Controllers\BasketController::class 
 
 Route::post('/basket/remove/{id}' , [\App\Http\Controllers\BasketController::class , 'basketRemove'])->name('basket_remove');
 
-Route::get('{category}/{product?}', [\App\Http\Controllers\MainController::class , 'product'])->name('product');
-
-
-
+Route::get('/{category}/{product}', [\App\Http\Controllers\MainController::class , 'product'])->name('product');
