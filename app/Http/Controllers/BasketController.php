@@ -48,8 +48,8 @@ class BasketController extends Controller
     public function basketAdd($product_id){
         $orderId = session('orderId');
         if(is_null($orderId)){
-            $order = Order::create()->id;
-            session(["orderId"=>$order->id]);
+            $order = Order::create();
+            session(['orderId'=>$order->id]);
         }
         else{
             $order = Order::find($orderId);
@@ -65,7 +65,6 @@ class BasketController extends Controller
         }
         return redirect()->route('basket');
     }
-
 
     public function basketRemove($product_id){
         $orderId = session('orderId');
