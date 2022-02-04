@@ -19,7 +19,7 @@
                 <td>
                     <a href="{{route('product', [$product->category , $product->code])}}">
                         {{$product->name}}
-                        {{$product->image}}
+                        <img src="{{\Illuminate\Support\Facades\Storage::url($product->image)}}" width="50" height="50">
                     </a>
                 </td>
                 <td>{{$product->pivot->count}}

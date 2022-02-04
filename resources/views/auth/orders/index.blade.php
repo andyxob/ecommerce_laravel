@@ -5,10 +5,7 @@
 @section('content')
 
 
-    <a href="{{route('home')}}">View site</a>
-    <a href="{{route('categories.index')}}">Categories</a>
-    <a href="{{route('products.index')}}">Products</a>
-    <a href="{{route('orders')}}">Orders</a>
+    @extends('auth.layouts.head')
 
     <h1> You are logged in</h1>
 

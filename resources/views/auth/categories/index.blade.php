@@ -2,6 +2,8 @@
 
 @section('title', 'Categories')
 
+@extends('auth.layouts.head')
+
 @section('content')
 
     <div class="col-md-12">

@@ -6,6 +6,8 @@
     @section('title' , 'Create category')
 @endisset
 
+@extends('auth.layouts.head')
+
 @section('content')
     @isset($category)
         <h1>Edit category {{$category->name}}</h1>
@@ -30,6 +32,7 @@
                    value="@isset($category){{$category->name}} "@endisset">
             <textarea name="description" class="form-control mt-2" rows="10" placeholder="Enter description"
                       id="description" cols="70">@isset($category){{$category->description}} @endisset</textarea>
+                <input type="file" name="image" id="image">
             <button type="submit">@isset($category)Edit category @else Create category @endisset</button>
         </div>
     </form>

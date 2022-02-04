@@ -36,7 +36,7 @@ Route::group(['prefix'=>'basket'], function (){
     Route::group(['middleware'=>'basket_not_empty'], function (){
         Route::get('/', [\App\Http\Controllers\BasketController::class, 'basket'])->name('basket');
 
-        Route::get(  '/order', [\App\Http\Controllers\BasketController::class, 'order'])->name('orders');
+        Route::get(  '/order', [\App\Http\Controllers\BasketController::class, 'order'])->name('order');
 
         Route::post('/remove/{id}' , [\App\Http\Controllers\BasketController::class , 'basketRemove'])->name('basket_remove');
 
@@ -52,4 +52,4 @@ Route::get('/categories', [\App\Http\Controllers\MainController::class, 'categor
 
 Route::get('/categories/{category}', [\App\Http\Controllers\MainController::class, 'category'])->name('category');
 
-Route::get('/{category}/{product}', [\App\Http\Controllers\MainController::class , 'product'])->name('product');
+Route::get('/{category}/{product?}', [\App\Http\Controllers\MainController::class , 'product'])->name('product');

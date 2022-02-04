@@ -2,6 +2,8 @@
 
 @section('title', 'Category '. $category->name)
 
+@extends('auth.layouts.head')
+
 @section('content')
     <div class="col-md-12">
         <h1> Category {{$category->name}}</h1>
@@ -29,7 +31,7 @@
             </tr>
             <tr>
                 <td>Image</td>
-                <td>{{$category->image}}</td>
+                <td><img src="{{\Illuminate\Support\Facades\Storage::url($category->image)}}"></td>
             </tr>
 
             <tr>

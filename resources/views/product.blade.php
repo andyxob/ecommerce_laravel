@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('title')
-    {{--{{$product->name}}--}}
+
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
 <h2>category name</h2>
 
 
-<h1>$product->image</h1>
+<h1><img src="" width="300" height="300"></h1>
 
 <p>$product->description</p>
 

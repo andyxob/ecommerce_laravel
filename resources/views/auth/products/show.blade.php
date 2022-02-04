@@ -2,6 +2,8 @@
 
 @section('title', 'Product '.$product->name)
 
+@extends('auth.layouts.head')
+
 @section('content')
 
     <div class="col-md-12">
@@ -30,11 +32,11 @@
             </tr>
             <tr>
                 <td>Category</td>
-                <td>{{$product->category_id}}</td>
+                <td>{{$product->category->code}}</td>
             </tr>
             <tr>
                 <td>Image</td>
-                <td>{{$product->image}}</td>
+                <td><img src="{{\Illuminate\Support\Facades\Storage::url($product->image)}}" width="300" height="300"></td>
             </tr>
             </tbody>
         </table>

@@ -6,6 +6,8 @@
     @section('title', 'Create product')
 @endisset
 
+@extends('auth.layouts.head')
+
 @section('content')
     @isset($product)
         <h1>Edit product {{$product->name}}</h1>
@@ -42,6 +44,7 @@
                 <input type="number" id="price" name="price" class="form-control mt-2" @isset($product) value="{{$product->price}}"@endisset>
             <textarea name="description" class="form-control mt-2" rows="10" placeholder="Enter description"
                       id="description" cols="70">@isset($product){{$product->description}} @endisset</textarea>
+                <input type="file" id="image" name="image" class="form-control">
             <button type="submit" class="btn btn-success mt-2">@isset($product)Edit product @else Create product @endisset</button>
         </div>
     </form>
