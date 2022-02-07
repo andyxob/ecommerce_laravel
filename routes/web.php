@@ -46,7 +46,7 @@ Route::group(['prefix'=>'basket'], function (){
 
 });
 
-Route::get('/', [\App\Http\Controllers\MainController::class , 'index'])->name("home");
+Route::get('/', [\App\Http\Controllers\MainController::class , 'index'])->name("index");
 
 Route::get('/categories', [\App\Http\Controllers\MainController::class, 'categories'])->name('categories');
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -38,11 +39,23 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $path=$request->file('image')->store('products');
+        $request->validate([
+            'code'=>'required',
+            'name'=>'required',
+            'description'=>'required',
+            'price'=>'required'
+        ]);
         $params = $request->all();
-        $params['image']=$path;
+        unset($params['image']);
+        if($request->has('image'))
+        {
+            $path=$request->file('image')->store('products');
+            $params['image']=$path;
+        }
+
+
         Product::create($params);
         return redirect()->route('products.index');
     }
@@ -77,12 +90,17 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        Storage::delete($product->image);
-        $path=$request->file('image')->store('products');
         $params = $request->all();
-        $params['image']=$path;
+        unset($params['image']);
+        if($request->has('image'))
+        {
+            Storage::delete($product->image);
+            $path=$request->file('image')->store('products');
+            $params['image']=$path;
+        }
+
         $product->update($params);
         return redirect()->route('products.index');
 

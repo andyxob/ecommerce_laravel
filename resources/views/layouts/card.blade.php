@@ -10,7 +10,7 @@
                     @csrf
                     <button type="submit" class="btn btn-primary">To basket</button>
                 </form>
-                <a href="{{route('product', [$product->category, $product])}}" class="btn btn-default" role="button">Read more</a>
+                <a href="{{route('product', [$product->category->code, $product->code])}}" class="btn btn-default" role="button">Read more</a>
 
             </div>
         </div>

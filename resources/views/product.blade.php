@@ -8,7 +8,7 @@
 
 
 <h1>$product->name</h1>
-<h2>category name</h2>
+<h2>$product->category->name</h2>
 
 
 <h1><img src="" width="300" height="300"></h1>

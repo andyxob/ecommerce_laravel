@@ -11,7 +11,7 @@
 </head>
 <body>
 <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-    <a href="{{route('home')}}"
+    <a href="{{route('index')}}"
        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32">
             <use xlink:href="#bootstrap"></use>
@@ -20,27 +20,32 @@
     </a>
 
     <ul class="nav nav-pills">
-        <li class="nav-item"><a href="{{route("home")}}" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="{{route("categories")}}" class="nav-link">Categories</a></li>
-        <li class="nav-item"><a href="{{route("basket")}}" class="nav-link">Basket</a></li>
+
+        <li class="nav-item"><a href="{{route("index")}}" class="nav-link @if(Route::currentRouteNamed('index')) active @endif" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="{{route("categories")}}" class="nav-link @if(Route::currentRouteNamed('categories')) active @endif">Categories</a></li>
+        <li class="nav-item"><a href="{{route("basket")}}" class="nav-link @if(Route::currentRouteNamed('basket')) active @endif">Basket</a></li>
         @guest
             <li class="nav-item"><a href="{{route('login')}}" class="nav-link">Login</a></li>
         @endguest
 
         @auth
-            <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+
+            @if(Auth::user()->is_admin==1)
+                <a class="nav-link" href="{{route('orders')}}">Admin page</a>
+            @endif
+            <li class="">
+                <a id="" class="" href="{{route('index')}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }}
                 </a>
 
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
+                <div class="nav-item">
+                    <a class="nav-item href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    <form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
                         @csrf
                     </form>
                 </div>
@@ -64,7 +69,7 @@
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <p class="col-md-4 mb-0 text-muted">© 2022 Galiorka Inc.</p>
 
-    <a href="{{route('home')}}"
+    <a href="{{route('index')}}"
        class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32">
             <use xlink:href="#bootstrap"></use>
@@ -72,7 +77,7 @@
     </a>
 
     <ul class="nav col-md-4 justify-content-end">
-        <li class="nav-item"><a href="{{route("home")}}" class="nav-link active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="{{route("index")}}" class="nav-link active" aria-current="page">Home</a></li>
         <li class="nav-item"><a href="{{route("categories")}}" class="nav-link">Categories</a></li>
         <li class="nav-item"><a href="{{route("basket")}}" class="nav-link">Basket</a></li>
         @guest
@@ -80,19 +85,24 @@
         @endguest
 
         @auth
-            <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+
+            @if(Auth::user()->is_admin==1)
+                <a class="nav-link" href="{{route('orders')}}">Admin page</a>
+            @endif
+
+            <li class="">
+                <a id="" class="" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }}
                 </a>
 
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
+                <div class="nav-item">
+                    <a class="" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    <form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
                         @csrf
                     </form>
                 </div>

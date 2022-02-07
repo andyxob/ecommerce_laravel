@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <td>Image</td>
-                <td><img src="{{\Illuminate\Support\Facades\Storage::url($category->image)}}"></td>
+                <td><img src="{{\Illuminate\Support\Facades\Storage::url($category->image)}}" width="300" height="300"></td>
             </tr>
 
             <tr>

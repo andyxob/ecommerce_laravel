@@ -22,7 +22,7 @@ class BasketController extends Controller
         $orderId = session('orderId');
         if(is_null($orderId))
         {
-            return redirect()->route('home');
+            return redirect()->route('index');
         }
         $order = Order::find($orderId);
         return view('order', ['order'=>$order]);
@@ -32,7 +32,7 @@ class BasketController extends Controller
 
         $orderId = session('orderId');
         if(is_null($orderId)){
-            return redirect()->route('home');
+            return redirect()->route('index');
         }
         $order = Order::find($orderId);
 
@@ -43,7 +43,7 @@ class BasketController extends Controller
         else{
             session()->flash('warning', "Something went wrong, please try later");
         }
-        return redirect()->route('home');
+        return redirect()->route('index');
     }
 
     public function basketAdd($product_id){

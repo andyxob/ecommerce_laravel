@@ -27,13 +27,22 @@
             @endisset
             @csrf
             <input type="text" class="form-control mt-2" placeholder="Enter category code" name="code" id="code"
-                   value="@isset($category) {{$category->code}} "@endisset">
+                   value="{{old('code', isset($category) ? $category->code : null)}}">
+                @error('code')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
             <input type="text" class="form-control mt-2" placeholder="Enter category name" name="name" id="name"
                    value="@isset($category){{$category->name}} "@endisset">
+                @error('name')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
             <textarea name="description" class="form-control mt-2" rows="10" placeholder="Enter description"
                       id="description" cols="70">@isset($category){{$category->description}} @endisset</textarea>
-                <input type="file" name="image" id="image">
-            <button type="submit">@isset($category)Edit category @else Create category @endisset</button>
+                @error('description')
+                <div class="alert alert-danger">{{$message}}</div>
+                @enderror
+                <input type="file" name="image" class="form-control mt-2" id="image">
+            <button type="submit" class="btn btn-success mt-2">@isset($category)Edit category @else Create category @endisset</button>
         </div>
     </form>
 @endsection

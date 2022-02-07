@@ -29,8 +29,14 @@
             @csrf
             <input type="text" class="form-control mt-2" placeholder="Enter product code" name="code" id="code"
                    value="@isset($product) {{$product->code}} "@endisset">
+                @error('code')
+                <div class="alert alert-dander">{{$message}}</div>
+                @enderror
             <input type="text" class="form-control mt-2" placeholder="Enter product name" name="name" id="name"
                    value="@isset($product){{$product->name}} "@endisset">
+                @error('name')
+                <div class="alert alert-dander">{{$message}}</div>
+                @enderror
             <select name="category_id" id="category_id" class="form-control mt-2">
                 @foreach($categories as $category)
                     <option value="{{$category->id}}"
@@ -41,10 +47,19 @@
                         @endisset>{{$category->name}}</option>
                 @endforeach
             </select>
-                <input type="number" id="price" name="price" class="form-control mt-2" @isset($product) value="{{$product->price}}"@endisset>
+                <input type="number" placeholder="enter price" id="price" name="price" class="form-control mt-2" @isset($product) value="{{$product->price}}"@endisset>
+                @error('price')
+                <div class="alert alert-dander">{{$message}}</div>
+                @enderror
             <textarea name="description" class="form-control mt-2" rows="10" placeholder="Enter description"
                       id="description" cols="70">@isset($product){{$product->description}} @endisset</textarea>
+                @error('description')
+                <div class="alert alert-dander">{{$message}}</div>
+                @enderror
                 <input type="file" id="image" name="image" class="form-control">
+                @error('file')
+                <div class="alert alert-dander">{{$message}}</div>
+                @enderror
             <button type="submit" class="btn btn-success mt-2">@isset($product)Edit product @else Create product @endisset</button>
         </div>
     </form>
