@@ -28,6 +28,19 @@
                     <td>{{$order->phone}}</td>
                     <td>{{$order->updated_at->format('h:i d/n/y')}}</td>
                     <td>{{$order->getFullPrice()}}</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-success" type="button"
+                               @if(\Illuminate\Support\Facades\Auth::user()->isAdmin())
+                               href="{{route('orders.show', $order)}}">
+                               @else
+                                    href="{{route('person.orders.show', $order)}}">
+                                   @endif
+
+                                Open
+                            </a>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

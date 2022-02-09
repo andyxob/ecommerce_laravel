@@ -22,8 +22,8 @@
     <ul class="nav nav-pills">
 
         <li class="nav-item"><a href="{{route("index")}}" class="nav-link @if(Route::currentRouteNamed('index')) active @endif" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="{{route("categories")}}" class="nav-link @if(Route::currentRouteNamed('categories')) active @endif">Categories</a></li>
-        <li class="nav-item"><a href="{{route("basket")}}" class="nav-link @if(Route::currentRouteNamed('basket')) active @endif">Basket</a></li>
+        <li class="nav-item"><a href="{{route("categories")}}" class="nav-link @if(Route::currentRouteNamed('categor*')) active @endif">Categories</a></li>
+        <li class="nav-item"><a href="{{route("basket")}}" class="nav-link @if(Route::currentRouteNamed('basket*')) active @endif">Basket</a></li>
         @guest
             <li class="nav-item"><a href="{{route('login')}}" class="nav-link">Login</a></li>
         @endguest
@@ -32,6 +32,9 @@
 
             @if(Auth::user()->is_admin==1)
                 <a class="nav-link" href="{{route('orders')}}">Admin page</a>
+
+            @else
+                <li class="nav-item"><a href="{{route('person.orders.index')}}" class="nav-link">My orders</a></li>
             @endif
             <li class="">
                 <a id="" class="" href="{{route('index')}}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -51,7 +54,7 @@
                 </div>
             </li>
         @endauth
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+
     </ul>
 </header>
 
@@ -86,8 +89,10 @@
 
         @auth
 
-            @if(Auth::user()->is_admin==1)
+            @if(Auth::user()->isAdmin())
                 <a class="nav-link" href="{{route('orders')}}">Admin page</a>
+            @else
+                <li class="nav-item"><a href="{{route('person.orders.index')}}" class="nav-link">My orders</a></li>
             @endif
 
             <li class="">
@@ -108,7 +113,7 @@
                 </div>
             </li>
         @endauth
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+
     </ul>
 </footer>
 </body>

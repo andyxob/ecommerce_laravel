@@ -19,16 +19,33 @@ Auth::routes([
 
 ]);
 
-Route::group(['middleware'=>'auth', 'prefix'=>'admin'], function (){
-    Route::group(['middleware'=>'is_admin'], function (){
-        Route::get('/home', [\App\Http\Controllers\Admin\OrderController::class , 'index'])->name('orders');
+Route::middleware(['auth'])->group(function (){
+
+    Route::group([
+        'prefix'=>'person',
+        'namespace'=>'Person',
+        'as'=>'person.'
+    ], function (){
+        Route::get('/orders', [\App\Http\Controllers\Person\OrderController::class , 'index'])->name('orders.index');
+        Route::get('/orders/{order}', [\App\Http\Controllers\Admin\OrderController::class , 'show'])->name('orders.show');
+    });
+
+
+});
+
+Route::group(['prefix'=>'admin'], function (){
+    Route::group(['middleware'=>'is_admin',
+        'namespace'=>'Admin' ], function (){
+        Route::get('/orders', [\App\Http\Controllers\Admin\OrderController::class , 'index'])->name('orders');
+        Route::get('/orders/{order}', [\App\Http\Controllers\Admin\OrderController::class , 'show'])->name('orders.show');
     });
 
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
-
     Route::resource('products' , \App\Http\Controllers\Admin\ProductController::class);
 
 });
+
+
 
 Route::group(['prefix'=>'basket'], function (){
     Route::post('/add/{id}' , [\App\Http\Controllers\BasketController::class , 'basketAdd'])->name('basket_add');
