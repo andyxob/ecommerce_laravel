@@ -63,10 +63,7 @@
         <p class="alert alert-success">{{session()->get('success')}}</p>
     @endif
 
-
     @yield('content')
-
-
 </div>
 
 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
