@@ -54,8 +54,6 @@ class ProductController extends Controller
             $path=$request->file('image')->store('products');
             $params['image']=$path;
         }
-
-
         Product::create($params);
         return redirect()->route('products.index');
     }
