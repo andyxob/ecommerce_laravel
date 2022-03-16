@@ -39,7 +39,6 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-
         $params = $request->all();
         unset($params['image']);
         if($request->has('image')){
